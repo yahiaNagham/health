@@ -1,95 +1,93 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+    <>
+      <Navbar />
+      
+      <main style={{ minHeight: 'calc(100vh - 120px)', backgroundColor: '#f5f9ff' }}>
+        {/* Hero Section */}
+        <section 
+          style={{
+            backgroundImage: 'url("/image2.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            color: 'black',
+            textAlign: 'center',
+            padding: '5rem 2rem',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>WELCOME TO HEALTH AI+</h1>
+          <p style={{ fontSize: '1.5rem', maxWidth: '64rem', margin: '0 auto', marginBottom: '2rem' }}>
+            Your trusted platform for advanced health consultations and personalized medical services powered by AI.
+          </p>
+        </section>
+        
+        {/* Services Section */}
+        <section style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', padding: '4rem 2rem', maxWidth: '90rem', margin: '0 auto' }}>
+          {services.map((service) => (
+            <div
+              key={service.title}
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                padding: '2.5rem',
+                width: '100%',
+                maxWidth: '20rem',
+                textAlign: 'center',
+                transition: 'transform 0.3s, box-shadow 0.3s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-10px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <h2 style={{ color: '#4b6cb7', fontSize: '1.5rem', marginBottom: '1rem' }}>
+                {service.title}
+              </h2>
+              <p style={{ color: '#4a4a4a', marginBottom: '1.5rem' }}>
+                {service.description}
+              </p>
+              <a
+                href="#"
+                style={{
+                  display: 'inline-block',
+                  backgroundColor: '#4b6cb7',
+                  color: 'white',
+                  padding: '0.75rem 1.75rem',
+                  borderRadius: '9999px',
+                  fontWeight: '600',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#3a5aa0'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#4b6cb7'}
+              >
+                {service.buttonText}
+              </a>
+            </div>
+          ))}
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      <Footer />
+    </>
   );
 }
+
+const services = [
+  {
+    title: "Let's Book Your Appointment",
+    description: "Easily book your appointment for a medical scan in our laboratory.",
+    buttonText: "Book Appointment"
+  },
+  {
+    title: "Let's Consult",
+    description: "Consultation avec des médecins qualifiés pour des conseils de santé personnalisés.",
+    buttonText: "Prendre RDV"
+  },
+  // Add other services here
+];
